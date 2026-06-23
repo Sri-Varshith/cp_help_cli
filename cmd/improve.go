@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/Sri-Varshith/cp_help_cli/internal/parser"
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +15,14 @@ var improveCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		file := args[0]
 
-		fmt.Printf("Improving %s\n", file)
+		code, err := parser.ReadFile(file)
+		if err != nil {
+			fmt.Printf("Error reading file: %v\n", err)
+			return
+		}
+
+		fmt.Printf("Successfully read %s\n", file)
+		fmt.Printf("Code length: %d bytes\n", len(code))
 	},
 }
 

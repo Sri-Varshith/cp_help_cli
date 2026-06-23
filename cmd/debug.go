@@ -3,24 +3,26 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/Sri-Varshith/cp_help_cli/internal/parser"
 	"github.com/spf13/cobra"
 )
 
 var debugCmd = &cobra.Command{
 	Use:   "debug <file>",
 	Short: "Find bugs and issues in code",
-	Long:  "Analyze a source file and identify bugs, runtime errors, edge cases, and logic issues.",
 	Args:  cobra.ExactArgs(1),
 
 	Run: func(cmd *cobra.Command, args []string) {
 		file := args[0]
 
-		fmt.Printf("Debugging %s\n", file)
+		code, err := parser.ReadFile(file)
+		if err != nil {
+			fmt.Printf("Error reading file: %v\n", err)
+			return
+		}
 
-		// TODO:
-		// 1. Read file contents
-		// 2. Send code to AI
-		// 3. Display bug report
+		fmt.Printf("Successfully read %s\n", file)
+		fmt.Printf("Code length: %d bytes\n", len(code))
 	},
 }
 
