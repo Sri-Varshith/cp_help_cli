@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/Sri-Varshith/cp_help_cli/internal/ai"
+	"github.com/Sri-Varshith/cp_help_cli/internal/output"
 	"github.com/Sri-Varshith/cp_help_cli/internal/parser"
 	"github.com/spf13/cobra"
 )
@@ -30,7 +31,7 @@ var analyzeCmd = &cobra.Command{
 			return
 		}
 
-		fmt.Println(response)
+		output.PrintResponse(response)
 	},
 }
 
