@@ -27,6 +27,8 @@ sample.cpp
 
 # env file
 .env
+bin/
+dist/
 
 # Editor/IDE
 # .idea/
